@@ -1,0 +1,24 @@
+{% extends 'base.jinja' %}
+{% from 'macros/sticky.jinja' import sticky %}
+{% from 'macros/notepad.jinja' import notepad %}
+
+{% block extrahead %}
+<link rel="alternate" type="application/rss+xml" title="All of CrankItUp's MapWorld!" href="/feed" />
+{% endblock %}
+
+{% block content %}
+{{ notepad("Welcome to CrankItUp's MapWorld", true, page, allownext) }}
+{{notepad("Proudly the world's worst custom song website!", showpin = false)}}
+<div class="notecontainer">
+    {% for map in maps %}
+    {% call sticky(map['title'], url_for('maps.map', map_id=map['id']), editable=true )%}
+    <span class="badge badge-primary">Created by: <a href="/mappers/{{mappers[map['mapperid']]}}">{{
+            mappers[map['mapperid']] }}</a></span>
+    <br>
+    <span class="badge badge-primary">{{ map['created'] }}</span>
+    {% endcall %}
+    {% endfor %}
+    <!-- This fake element is only here to ensure that the final sticky isn't forced to be an extra row down -->
+    <div style="visibility:hidden; height:0px; width: 20em"></div>
+</div>
+{% endblock %}

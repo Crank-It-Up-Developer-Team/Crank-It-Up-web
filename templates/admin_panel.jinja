@@ -1,0 +1,48 @@
+{% extends 'base.jinja' %}
+{% from 'macros/sticky.jinja' import sticky %}
+{% from 'macros/notepad.jinja' import notepad %}
+
+{% block content %}
+{{ notepad("Admin Panel") }}
+<div class="notecontainer">
+    {% call sticky("Create a new signup code", none) %}
+    <form action="/admin/create_signup_code" method="post">
+        <input type="text" name="code" placeholder="code">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endcall %}
+    {% call sticky("Add a new mapper", none) %}
+    <form action="/admin/create_mapper" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <br>
+        <label for="isadmin">Make them an admin?</label>
+        <input type="checkbox" name="isadmin">
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endcall %}
+    {% call sticky("Lock mapper's account", none) %}
+    <h3></h3>
+    <form action="/admin/lock_mapper" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endcall %}
+    {% call sticky("Unlock mapper's account", none) %}
+    <form action="/admin/unlock_mapper" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endcall %}
+    {% call sticky("Delete mapper", none)%}
+    <form action="/admin/delete_mapper" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <button type="submit" class="btn btn-primary"
+            onclick="return confirm('Are you sure you want to DELETE this user?')">Submit</button>
+    </form>
+    {% endcall %}
+    <!-- This fake element is only here to ensure that the final sticky isn't forced to be an extra row down -->
+    <div style="visibility:hidden; height:0px; width: 20em"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.jinja' %}
+{% from 'macros/notepad.jinja' import notepad %}
+{% block content %}
+
+{% call notepad("Upload a new map") %}
+<form method="post" enctype=multipart/form-data>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" placeholder="Post title" class="form-control"
+            value="{{ request.form['title'] }}">
+    </div>
+
+    <div class="form-group">
+        <div class="upload-btn-wrapper">
+            <button class="btn">Choose a file</button>
+            <br>
+            <input type="file" id="map-zip" name="map-zip">
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+{% endcall %}
+{% endblock %}

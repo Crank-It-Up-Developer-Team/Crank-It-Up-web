@@ -1,0 +1,22 @@
+{% extends 'base.jinja' %}
+{% from 'macros/notepad.jinja' import notepad %}
+
+{% block content %}
+{% call notepad("How to use RSS on CrankItUp's MapWorld") %}
+<p>Using RSS on CrankItUp's MapWorld is quite easy, it boils down to just two simple steps:</p>
+<ol>
+    <li>Go to any of the following:
+        <ul>
+            <li>Any mapper page</li>
+            <li>The home page</li>
+        </ul>
+    </li>
+    <li>Add /feed to the end of the URL, and put that in your RSS reader!</li>
+</ol>
+<p>Once you've done that, you should be able to see all of that content in your feed, cool right?</p>
+<h3>Example:</h3>
+<p>The feed for an mapper named MrMoor2007 would look like this: <a
+        href="https://mapworld.annoyingrains.xyz/mappers/MrMoor2007/feed">https://mapworld.annoyingrains.xyz/mappers/MrMoor2007/feed</a>
+</p>
+{% endcall %}
+{% endblock %}

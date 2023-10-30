@@ -1,0 +1,24 @@
+{% extends 'base.jinja' %}
+{% from 'macros/notepad.jinja' import notepad %}
+
+{% block content %}
+{{ notepad('Edit "' + map['title']+ '"') }}
+{% call notepad("Set a new title for the map:", smalltitle=true, showpin=false) %}
+<form method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" placeholder="Post title" class="form-control"
+            value="{{ request.form['title'] or map['title'] }}">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+{% endcall %}
+{% call notepad("Or, alternatively, delete it!", smalltitle=true, showpin=false)%}
+<form action="{{ url_for('maps.delete', id=map['id']) }}" method="POST">
+    <input type="submit" value="Delete map" class="btn btn-danger btn-sm"
+        onclick="return confirm('Are you sure you want to delete this map?')">
+</form>
+{% endcall %}
+{% endblock %}

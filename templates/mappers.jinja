@@ -1,0 +1,16 @@
+{% extends 'base.jinja' %}
+{% from 'macros/sticky.jinja' import sticky %}
+{% from 'macros/notepad.jinja' import notepad %}
+
+{% block content %}
+{{ notepad("mappers:") }}
+
+<div class="notecontainer">
+    {% for mapper in mappers %}
+    {% call sticky(mapper[0], url_for('mappers.mapper', mapper=mapper[0])) %}
+    {% endcall %}
+    {% endfor %}
+    <!-- This fake element is only here to ensure that the final sticky isn't forced to be an extra row down -->
+    <div style="visibility:hidden; height:0px; width: 20em"></div>
+</div>
+{% endblock %}

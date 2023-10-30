@@ -1,0 +1,26 @@
+{% extends 'base.jinja' %}
+
+{% block extrahead %}
+<link rel="alternate" type="application/rss+xml" title="All of CrankItUp's MapWorld!" href="/feed" />
+<link rel="alternate" type="application/rss+xml" title="{{mapper}}'s feed" href="{{mapper}}/feed" />
+{% endblock %}
+
+{% block content %}
+<title>CrankItUp's MapWorld - {{ map['title'] }}</title>
+<div class="center">
+    <div class="notecontainer">
+        <div class="sticky {{['s1','s2', 's3', 's4']|random}}"
+            style="margin-right: auto; width: fit-content; height: fit-content; transform: rotate(0deg);">
+            <h2>{% block title %} {{ map['title'] }} {% endblock %}</h2>
+            <span class="badge badge-primary">{{ map['created'] }}</span>
+            <a href="/mappers/{{mapper}}">
+                <span class="badge badge-primary">Created by: {{ mapper }}</span>
+            </a>
+            <br>
+            <a href="/static/maps/{{ map['id'] }}.zip">
+                <p>Download</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

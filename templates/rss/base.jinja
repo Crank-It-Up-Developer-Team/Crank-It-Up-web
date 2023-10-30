@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>{% block title %}{% endblock %}</title>
+        <link>{% block link %}{% endblock %}</link>
+        <description>{% block description %}{% endblock %}</description>
+        {% for map in maps %}
+        <item>
+            <title>{{ map['title'] }}</title>
+            <link>https://mapworld.annoyingrains.xyz{{ url_for('maps.map', map_id=map['id']) }}</link>
+            <guid>https://mapworld.annoyingrains.xyz{{ url_for('maps.map', map_id=map['id']) }}</guid>
+            <enclosure url="https://mapworld.annoyingrains.xyz/static/maps/{{ map['id'] }}.{{ map['fileext'] }}"
+                type="{{ types_map['.' + map['fileext'].lower()] }}" />
+            <description>A map by {{ mappers[map['mapperid']] }} }}
+            </description>
+            <pubDate>{{ map['created'] }}</pubDate>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>
